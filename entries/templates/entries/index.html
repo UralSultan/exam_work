@@ -32,7 +32,8 @@
 
         </div>
 
-        {% include 'entries/_entry_form.html' %}
+{% include 'entries/_entry_form.html' with form=entry_form form_action=add_entry_url title="Добавить новую запись" submit_label="Добавить" %}
+
 
         {% if entries %}
             {% for entry in entries %}
@@ -48,9 +49,11 @@
                         </small>
                     </div>
                     <div class="btn-group">
-                        <a href="#" class="btn btn-sm btn-outline-primary" title="Редактировать">
+                        <a href="{% url 'edit_entry' entry.pk %}"
+                        class="btn btn-sm btn-outline-primary" title="Редактировать">
                             <i class="fas fa-edit"></i>
                         </a>
+
                         <a href="#" class="btn btn-sm btn-outline-danger" title="Удалить">
                             <i class="fas fa-trash"></i>
                         </a>
@@ -71,8 +74,7 @@
                 {% endif %}
             </div>
         {% endif %}
-
-        {% include 'entries/_entry_form.html' %}
+        {% include 'entries/_entry_form.html' with form=entry_form form_action=add_entry_url title="Добавить новую запись" submit_label="Добавить" %}
     </div>
 </div>
 {% endblock %}

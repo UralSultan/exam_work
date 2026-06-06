@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}Редактирование записи - Гостевая книга{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+        <h1 class="mb-4 text-center">Редактирование записи</h1>
+
+        {% include 'entries/_entry_form.html' with form=form form_action=form_action title=title submit_label=submit_label %}
+    </div>
+</div>
+{% endblock %}
