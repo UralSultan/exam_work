@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
 from .models import GuestbookEntry
-from .forms import SearchForm, GuestbookEntryForm
+from .forms import SearchForm, GuestbookEntryForm, DeleteEntryForm
 
 
 def index(request):
@@ -64,3 +64,24 @@ def edit_entry(request, pk):
         'submit_label': 'Сохранить',
     }
     return render(request, 'entries/edit_entry.html', context)
+
+def delete_entry(request, pk):
+    entry = get_object_or_404(GuestbookEntry, pk=pk)
+
+    if request.method == 'POST':
+        form = DeleteEntryForm(request.POST)
+        if form.is_valid():
+            entered_email = form.cleaned_data['author_email']
+            if entered_email == entry.author_email:
+                entry.delete()
+                return redirect('index')
+            else:
+                form.add_error('author_email', 'Email не совпадает с email автора записи.')
+    else:
+        form = DeleteEntryForm()
+
+    context = {
+        'entry': entry,
+        'form': form,
+    }
+    return render(request, 'entries/delete_entry.html', context)

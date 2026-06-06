@@ -54,9 +54,12 @@
                             <i class="fas fa-edit"></i>
                         </a>
 
-                        <a href="#" class="btn btn-sm btn-outline-danger" title="Удалить">
-                            <i class="fas fa-trash"></i>
+                        <a href="{% url 'delete_entry' entry.pk %}"
+                            class="btn btn-sm btn-outline-danger"
+                            title="Удалить">
+                        <i class="fas fa-trash"></i>
                         </a>
+
                     </div>
                 </div>
                 <div class="entry-content">

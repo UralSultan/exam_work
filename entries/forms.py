@@ -26,3 +26,9 @@ class GuestbookEntryForm(forms.ModelForm):
             'author_email': forms.EmailInput(attrs={'class': 'form-control'}),
             'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
         }
+
+class DeleteEntryForm(forms.Form):
+    author_email = forms.EmailField(
+        label='Email автора',
+        widget=forms.EmailInput(attrs={'class': 'form-control'})
+    )
