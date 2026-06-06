@@ -6,8 +6,7 @@
 <div class="row">
     <div class="col-lg-8 mx-auto">
         <h1 class="mb-4 text-center">Гостевая книга</h1>
-        
-        <!-- Форма поиска -->
+
         <div class="search-form">
             <form method="get" action="{% url 'index' %}">
                 <div class="row g-2">
@@ -29,9 +28,12 @@
                     </small>
                 </div>
             {% endif %}
+
+
         </div>
 
-        <!-- Список записей -->
+        {% include 'entries/_entry_form.html' %}
+
         {% if entries %}
             {% for entry in entries %}
             <div class="card entry-card mb-3">
@@ -69,6 +71,8 @@
                 {% endif %}
             </div>
         {% endif %}
+
+        {% include 'entries/_entry_form.html' %}
     </div>
 </div>
 {% endblock %}

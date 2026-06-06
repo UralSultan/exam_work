@@ -1,5 +1,5 @@
 from django import forms
-
+from .models import GuestbookEntry
 
 class SearchForm(forms.Form):
     search_query = forms.CharField(
@@ -11,3 +11,18 @@ class SearchForm(forms.Form):
             'placeholder': 'Введите имя автора...'
         })
     )
+
+class GuestbookEntryForm(forms.ModelForm):
+    class Meta:
+        model = GuestbookEntry
+        fields = ('author_name', 'author_email', 'content')
+        labels = {
+            'author_name': 'Имя',
+            'author_email': 'Email',
+            'content': 'Текст',
+        }
+        widgets = {
+            'author_name': forms.TextInput(attrs={'class': 'form-control'}),
+            'author_email': forms.EmailInput(attrs={'class': 'form-control'}),
+            'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 4}),
+        }
